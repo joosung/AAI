@@ -1,0 +1,8 @@
+#!/bin/bash
+BASE=/root/APM/chkrootkit/
+cd $BASE
+chk='./chkrootkit'
+if [ -n "$chk" ]; then
+echo $chk | mail -s "My SYSTEM Chkrootkit Result" root@localhost
+echo Finished
+fi

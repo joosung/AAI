@@ -1,0 +1,5 @@
+#!/bin/sh
+if certbot renew > /var/log/letsencrypt/renew.log 2>&1 ; then
+   nginx -s reload
+fi
+exit
