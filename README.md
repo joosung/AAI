@@ -29,8 +29,9 @@ APM AUTO INSTALL V.0.3.5 사용 설명서
 
 <pre>
 APM 설치 버전은 아래와 같습니다.
+
 httpd 2.4.37
-php 7.2.13
+php 7.2.14
 mariadb 10.3.12
 ionCube PHP Loader 10.2.7
 Zend OPcache 7.2.13
@@ -51,7 +52,7 @@ mod_expires 설정
 GeoIP 1.1.1
 사용지 계정 백업 스크립트 1.0.2
 사용자 계정 생성 스크립트 1.0.2
-사용자 계정 삭제 스크립트 1.0.2
+사용자 계정 삭제 스크립트 1.0.2 등...... 그외 필요한 라이브러리도 같이 설치가 됩니다. 
 </pre>
 
 https://apachezone.com
