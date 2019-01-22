@@ -4,7 +4,7 @@
 #                                                                                   #
 # * APMinstaller v.0.3.5                                                            #
 # * CentOS 7.6   Minimal ISO                                                        #
-# * Apache 2.4.XX , MariaDB 10.3.X, PHP 7.2.X setup shell script                    #
+# * Apache 2.4.X , MariaDB 10.3.X, PHP 7.2.X setup shell script                     #
 # * Created Date    : 2019/1/15                                                     #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
@@ -247,7 +247,7 @@ sed -i 's,\(#filter = sshd-aggressive\),\1\nenabled = true,g;' /etc/fail2ban/jai
 #clamav 설치
 yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
-cp /usr/share/doc/clamd-0.101.0/clamd.conf /etc/clamd.conf
+cp /usr/share/doc/clamd-0.101.1/clamd.conf /etc/clamd.conf
 
 sed -i '/^Example/d' /etc/clamd.conf
 sed -i 's/User <USER>/User clamscan/' /etc/clamd.conf
