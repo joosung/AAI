@@ -1,9 +1,9 @@
-# AAI V.0.3.5
-APM AUTO INSTALL V.0.3.5 사용 설명서
+# AAI V.0.3.6
+APM AUTO INSTALL V.0.3.6 사용 설명서
 
 1. SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
 
-2. APMAUTOINSTALL V.0.3.5 압축 파일을 다운로드 받으시고 압축을 해제 후 APM 폴더를 자신의 서버 /root 폴더에 업로드한다.
+2. APMAUTOINSTALL V.0.3.6 압축 파일을 다운로드 받으시고 압축을 해제 후 APM 폴더를 자신의 서버 /root 폴더에 업로드한다.
 
 3. Shell(터미널)에서 APM 폴더내의 APMinstaller.sh 파일의 퍼미션을 chmod 700 APMinstaller.sh 로 해당 파일의 퍼미션을 700 으로 수정한다.
 
