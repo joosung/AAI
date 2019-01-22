@@ -34,7 +34,7 @@ https://apachezone.com
 <pre>
 APM 설치 버전은 아래와 같습니다.
 
-httpd 2.4.37
+httpd 2.4.38
 php 7.2.14
 mariadb 10.3.12
 ionCube PHP Loader 10.2.7
@@ -43,7 +43,7 @@ Xdebug 2.6.1
 Let's Encrypt 0.27.1
 phpMyAdmin 4.8.4
 chkrootkit 0.52
-clamav 101.0-1
+clamav 101.1-1
 arpwatch 2.1a15-36
 fail2ban 0.9.7-1
 mod_evasive 1.10.1-22
