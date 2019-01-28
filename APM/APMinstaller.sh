@@ -211,7 +211,7 @@ character-set-server = utf8
 collation-server = utf8_general_ci
   
 [client]
-default-character-set = utf8" > /etc/my.cnf.d/myaql-aai.cnf
+default-character-set = utf8" > /etc/my.cnf.d/mysql-aai.cnf
 
 systemctl restart mariadb
 
