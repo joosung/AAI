@@ -200,6 +200,21 @@ systemctl start smartd
 #                                        #
 ##########################################
 
+echo "[mysql]
+default-character-set = utf8
+ 
+[mysqld]
+character-set-client-handshake=FALSE
+init_connect="SET collation_connection = utf8_general_ci"
+init_connect="SET NAMES utf8"
+character-set-server = utf8
+collation-server = utf8_general_ci
+  
+[client]
+default-character-set = utf8" > /etc/my.cnf.d/myaql-aai.cnf
+
+systemctl restart mariadb
+
 /usr/bin/mysql_secure_installation
 
 ##########################################
