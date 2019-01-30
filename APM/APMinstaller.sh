@@ -157,6 +157,8 @@ chmod 700 /root/APM/adduser.sh
 
 chmod 700 /root/APM/deluser.sh
 
+chmod 700 /root/APM/varnish_in.sh
+
 cp /root/APM/skel/index.html /etc/skel/public_html/
 
 systemctl restart httpd
@@ -199,21 +201,6 @@ systemctl start smartd
 #            mysql root 설정             #
 #                                        #
 ##########################################
-
-echo "[mysql]
-default-character-set = utf8
- 
-[mysqld]
-character-set-client-handshake=FALSE
-init_connect="SET collation_connection = utf8_general_ci"
-init_connect="SET NAMES utf8"
-character-set-server = utf8
-collation-server = utf8_general_ci
-  
-[client]
-default-character-set = utf8" > /etc/my.cnf.d/mysql-aai.cnf
-
-systemctl restart mariadb
 
 /usr/bin/mysql_secure_installation
 
@@ -387,6 +374,10 @@ rm -rf /root/APM/skel
 rm -rf /root/APM/index.html
 
 service httpd restart
+
+cd /root/APM
+sh varnish_in.sh
+
 echo ""
 echo ""
 echo "축하 드립니다. APMinstaller 모든 작업이 끝났습니다."
