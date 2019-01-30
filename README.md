@@ -1,9 +1,9 @@
-# AAI V.0.3.6
-APM AUTO INSTALL V.0.3.6 사용 설명서
+# AAI V.0.3.7
+APM AUTO INSTALL V.0.3.7 사용 설명서
 
 1. SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
 
-2. APMAUTOINSTALL V.0.3.6 압축 파일을 다운로드 받으시고 압축을 해제 후 APM 폴더를 자신의 서버 /root 폴더에 업로드한다.
+2. APMAUTOINSTALL V.0.3.7 압축 파일을 다운로드 받으시고 압축을 해제 후 APM 폴더를 자신의 서버 /root 폴더에 업로드한다.
 
 3. Shell(터미널)에서 APM 폴더내의 APMinstaller.sh 파일의 퍼미션을 chmod 700 APMinstaller.sh 로 해당 파일의 퍼미션을 700 으로 수정한다.
 
@@ -24,7 +24,7 @@ APM AUTO INSTALL V.0.3.6 사용 설명서
 
 11. /etc/cron.daily/backup 파일을 에디터로 열고 '패스워드' 를 찾아서 DB 루트 패스워드로 교체 합니다.
 
-12. Varnish Cache 플러그인 설치를 Y/N으로 추가 할 수 있도록 했습니다.
+12. Varnish Cache 플러그인 설치를 Y/N 으로 선택 추가 할 수 있도록 했습니다.
 
 
 그외 소소한(?) 튜닝이나 설정은 구글 검색을 또는 아파치존 QnA 를 통하여 질문 하시면서 자신이 사용하기 좋은 환경을 만들어 가시면 됩니다.
