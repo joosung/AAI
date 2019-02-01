@@ -198,9 +198,22 @@ systemctl start smartd
 
 ##########################################
 #                                        #
-#            mysql root 설정             #
+#                mysql 설정               #
 #                                        #
 ##########################################
+
+echo "[mysql]
+default-character-set = utf8
+ 
+[mysqld]
+character-set-client-handshake=FALSE
+init_connect="SET collation_connection = utf8_general_ci"
+init_connect="SET NAMES utf8"
+character-set-server = utf8
+collation-server = utf8_general_ci
+  
+[client]
+default-character-set = utf8" > /etc/my.cnf.d/mysql-aai.cnf
 
 /usr/bin/mysql_secure_installation
 
