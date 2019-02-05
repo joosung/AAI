@@ -17,7 +17,7 @@
 ########################################## 
 
 yum -y install wget openssh-clients bind-utils git nc vim-enhanced man ntsysv \
-iotop sysstat strace lsof mc lrzsz zip unzip bzip2 glibc* net-tools
+iotop sysstat strace lsof mc lrzsz zip unzip bzip2 glibc* net-tools bind ntp
 
 cd /etc/yum.repos.d && wget https://repo.codeit.guru/codeit.el`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`.repo
 
@@ -32,6 +32,13 @@ echo "gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB" >> /etc/yum.repos.d/Ma
 echo "gpgcheck=1" >> /etc/yum.repos.d/MariaDB.repo 
 
 yum -y update
+
+systemctl start named.service
+systemctl enable  named.service
+
+systemctl start ntpd.service
+systemctl enable  ntpd.service
+ntpdate -d 0.centos.pool.ntp.org
 
 cd /root/APM
 
@@ -87,6 +94,8 @@ firewall-cmd --reload
 #                                        #
 ##########################################  
 
+
+sed -i '/nameserver/i\nameserver 127.0.0.1' /etc/resolv.conf
 cp -av /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.original
 sed -i 's/DirectoryIndex index.html/ DirectoryIndex index.html index.htm index.php index.php3 index.cgi index.jsp/' /etc/httpd/conf/httpd.conf
 sed -i 's/Options Indexes FollowSymLinks/Options FollowSymLinks/' /etc/httpd/conf/httpd.conf
@@ -105,6 +114,7 @@ echo "<VirtualHost *:80>
 </VirtualHost> " >> /etc/httpd/conf.d/default.conf
 
 systemctl restart httpd
+systemctl restart named.service
 
 ##########################################
 #                                        #
@@ -156,8 +166,6 @@ chmod 707 /etc/skel/public_html
 chmod 700 /root/APM/adduser.sh
 
 chmod 700 /root/APM/deluser.sh
-
-chmod 700 /root/APM/varnish_in.sh
 
 cp /root/APM/skel/index.html /etc/skel/public_html/
 
@@ -355,7 +363,7 @@ rm -f /tmp/httpd.conf_tempfile
 
 ##########################################
 #                                        #
-#            Local SSL 설정              #
+#            Local SSL 설정               #
 #                                        #
 ##########################################
 
@@ -387,9 +395,6 @@ rm -rf /root/APM/skel
 rm -rf /root/APM/index.html
 
 service httpd restart
-
-cd /root/APM
-sh varnish_in.sh
 
 echo ""
 echo ""
