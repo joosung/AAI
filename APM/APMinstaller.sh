@@ -129,7 +129,7 @@ php-common php-devel php-gd php-imap php-json php-ldap \
 php-mbstring php-mcrypt php-mysqlnd php-opcache php-soap php-xml \
 php-iconv php-xmlrpc php-pdo uwsgi-plugin-php php-ioncube-loader php-pecl-apcu \
 php-pecl-geoip php-pecl-imagick php-pecl-memcached php-pecl-redis php-pecl-xdebug php-pecl-ssh2 \
-php-pecl-mailparse php-pgsql php-process php-snmp php-soap phpMyAdmin
+php-pecl-mysql php-pecl-mailparse php-pgsql php-process php-snmp php-soap phpMyAdmin
 
 echo "#geoip setup
 <IfModule mod_geoip.c>
@@ -246,20 +246,12 @@ make sense
 
 rm -rf /root/APM/chkrootkit.tar.gz
 
-#mod_evasive mod_security mod_security_crs mod_qos fail2ban.noarch arpwatch 설치
-yum -y install mod_evasive mod_security mod_security_crs mod_qos fail2ban.noarch arpwatch
+#mod_evasive mod_security mod_security_crs fail2ban.noarch arpwatch 설치
+yum -y install mod_evasive mod_security mod_security_crs fail2ban.noarch arpwatch
 
 sed -i 's/SecDefaultAction \"phase:1,deny,log\"/SecDefaultAction \"phase:1,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
 sed -i 's/SecDefaultAction \"phase:2,deny,log\"/SecDefaultAction \"phase:2,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
 sed -i 's/SecRuleEngine On/SecRuleEngine DetectionOnly/' /etc/httpd/conf.d/mod_security.conf
-
-echo "## QoS Settings
-<IfModule mod_qos.c>
-    QS_ClientEntries 100000
-    QS_SrvMaxConnPerIP 50
-    MaxClients              256 
-    QS_SrvMaxConnClose      180
-</IfModule>" >> /etc/httpd/conf.d/mod_qos.conf
 
 #fail2ban 설치
 service fail2ban start
