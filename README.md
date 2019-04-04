@@ -1,4 +1,4 @@
-# AAI V.0.3.8
+# AAI V.0.3.8-1
 APM AUTO INSTALL V.0.3.8 사용 설명서
 
 1. SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
