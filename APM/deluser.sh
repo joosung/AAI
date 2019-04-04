@@ -77,10 +77,7 @@ mysql -u root -p mysql < ./tmp
 rm -f ./tmp
 
 #SSL삭제
-rm -rf /etc/letsencrypt/live/$url
-rm -rf /etc/letsencrypt/archive/$url
-rm -rf /etc/letsencrypt/renewal/$id.$url.conf
-rm -rf /etc/letsencrypt/renewal/$url.conf
+certbot delete --cert-name $url
 
 #아파치 restart
 service httpd restart
@@ -242,10 +239,7 @@ then
 fi
 
 #SSL삭제
-rm -rf /etc/letsencrypt/live/$url
-rm -rf /etc/letsencrypt/archive/$url
-rm -rf /etc/letsencrypt/renewal/$id.$url.conf
-rm -rf /etc/letsencrypt/renewal/$url.conf
+certbot delete --cert-name $url
 
 
 echo 
