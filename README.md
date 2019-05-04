@@ -47,7 +47,7 @@ Xdebug 2.6.1
 Let's Encrypt 0.27.1
 phpMyAdmin 4.8.4
 chkrootkit 0.52
-clamav 101.1-1
+clamav 101.2-1
 arpwatch 2.1a15-36
 fail2ban 0.9.7-1
 mod_evasive 1.10.1-22
