@@ -16,7 +16,7 @@
 #                                        #
 ########################################## 
 
-yum -y install wget openssh-clients bind-utils git nc vim-enhanced man ntsysv \
+yum -y install wget openssh-clients bind-utils nc vim-enhanced man ntsysv \
 iotop sysstat strace lsof mc lrzsz zip unzip bzip2 glibc* net-tools bind ntp
 
 cd /etc/yum.repos.d && wget https://repo.codeit.guru/codeit.el`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`.repo
