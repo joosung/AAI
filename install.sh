@@ -49,6 +49,7 @@ echo ""
 echo ""
 echo "AAI 설치 완료!"
 echo ""
+rm -rf /root/AAI/install.sh
 exit;
 
 esac
