@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * APMinstaller v.0.3.7                                                            #
-# * CentOS 7.6   Minimal ISO                                                        #
+# * APMinstaller v.0.3.9                                                            #
+# * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.3.X, PHP 7.2.X setup shell script                     #
-# * Created Date    : 2019/1/22                                                     #
+# * Created Date    : 2019/6/23                                                     #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -40,7 +40,7 @@ systemctl start ntpd.service
 systemctl enable  ntpd.service
 ntpdate -d 0.centos.pool.ntp.org
 
-cd /root/APM
+cd /root/AAI/APM
 
 ##########################################
 #                                        #
@@ -106,8 +106,8 @@ sed -i 's/Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec/Options
 sed -i 's/LoadModule mpm_prefork_module/#LoadModule mpm_prefork_modul/' /etc/httpd/conf.modules.d/00-mpm.conf
 sed -i 's/#LoadModule mpm_event_module/LoadModule mpm_event_module/' /etc/httpd/conf.modules.d/00-mpm.conf
 
-cp /root/APM/index.html /var/www/html/
-cp -f /root/APM/index.html /usr/share/httpd/noindex/
+cp /root/AAI/APM/index.html /var/www/html/
+cp -f /root/AAI/APM/index.html /usr/share/httpd/noindex/
 
 echo "<VirtualHost *:80>
   DocumentRoot /var/www/html
@@ -118,7 +118,7 @@ systemctl restart named.service
 
 ##########################################
 #                                        #
-#         PHP7.2 및 라이브러리 install    #
+#         PHP7.2 및 라이브러리 install      #
 #                                        #
 ########################################## 
 
@@ -163,11 +163,11 @@ mkdir /etc/skel/public_html
 
 chmod 707 /etc/skel/public_html
 
-chmod 700 /root/APM/adduser.sh
+chmod 700 /root/AAI/adduser.sh
 
-chmod 700 /root/APM/deluser.sh
+chmod 700 /root/AAI/deluser.sh
 
-cp /root/APM/skel/index.html /etc/skel/public_html/
+cp /root/AAI/APM/skel/index.html /etc/skel/public_html/
 
 systemctl restart httpd
 
@@ -227,11 +227,11 @@ default-character-set = utf8" > /etc/my.cnf.d/mysql-aai.cnf
 
 ##########################################
 #                                        #
-#        운영 및 보안 관련 추가 설정       #
+#        운영 및 보안 관련 추가 설정           #
 #                                        #
 ##########################################
 
-cd /root/APM
+cd /root/AAI
 
 #chkrootkit 설치
 wget ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit.tar.gz 
@@ -244,7 +244,7 @@ cd chkrootkit
 
 make sense
 
-rm -rf /root/APM/chkrootkit.tar.gz
+rm -rf /root/AAI/chkrootkit.tar.gz
 
 #mod_evasive mod_security mod_security_crs fail2ban.noarch arpwatch 설치
 yum -y install mod_evasive mod_security mod_security_crs fail2ban.noarch arpwatch
@@ -359,9 +359,9 @@ rm -f /tmp/httpd.conf_tempfile
 #                                        #
 ##########################################
 
-mv /root/APM/etc/cron.daily/backup /etc/cron.daily/
-mv /root/APM/etc/cron.daily/check_chkrootkit /etc/cron.daily/
-mv /root/APM/etc/cron.daily/letsencrypt-renew /etc/cron.daily/
+mv /root/AAI/APM/etc/cron.daily/backup /etc/cron.daily/
+mv /root/AAI/APM/etc/cron.daily/check_chkrootkit /etc/cron.daily/
+mv /root/AAI/APM/etc/cron.daily/letsencrypt-renew /etc/cron.daily/
 
 chmod 700 /etc/cron.daily/backup
 chmod 700 /etc/cron.daily/check_chkrootkit
@@ -376,15 +376,10 @@ echo "02 1 * * * clamscan -r /home --move=/virus" >> /etc/crontab
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 #중요 폴더 및 파일 링크
-ln -s /etc/letsencrypt /root/APM/letsencrypt
-ln -s /etc/httpd/conf.d /root/APM/conf.d
-ln -s /etc/my.cnf /root/APM/my.cnf
-ln -s /etc/php.ini /root/APM/php.ini
-
-#설치 파일 삭제
-rm -rf /root/APM/etc
-rm -rf /root/APM/skel
-rm -rf /root/APM/index.html
+ln -s /etc/letsencrypt /root/AAI/letsencrypt
+ln -s /etc/httpd/conf.d /root/AAI/conf.d
+ln -s /etc/my.cnf /root/AAI/my.cnf
+ln -s /etc/php.ini /root/AAI/php.ini
 
 service httpd restart
 
@@ -392,7 +387,4 @@ echo ""
 echo ""
 echo "축하 드립니다. APMinstaller 모든 작업이 끝났습니다."
 
-rm -rf /root/APM/APMinstaller.sh
-
 exit 0
-

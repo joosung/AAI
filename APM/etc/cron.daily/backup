@@ -11,7 +11,7 @@
 # 로컬 풀 백업 설정
 BACKUP_DIR=/backup          # 백업 보관 디렉토리
 BACKUP_EXPIRES_DAYS=3       # 백업 만료 기간.   기본값 3일이 지난 백업 자동 삭제.
-BACKUP_PREFIX='APM'         # 백업 파일명 앞에 덧붙일 이름(서버명, 사이트명 등...)
+BACKUP_PREFIX='AAI'         # 백업 파일명 앞에 덧붙일 이름(서버명, 사이트명 등...)
 DB_USER='root'              # MySQL 사용자.  모든 디비를 백업하려면 root 계정 필요(기본값)
 DB_PASS='패스워드'            # MySQL 비밀번호.
 DB_HOST='localhost'         # MySQL 서버 주소.  별도 서버에 분리되지 않았다면 로컬 서버는 localhost 입력.

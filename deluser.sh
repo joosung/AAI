@@ -2,7 +2,7 @@
 
 ##########################################################
 # * deluser V 1.0.1                                      #
-# * APMinstaller v.0.3.4  전용                            #
+# * APMinstaller v.0.3.9  전용                            #
 # * Created Date    : 2019/1/3                           #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )  # 
 ##########################################################

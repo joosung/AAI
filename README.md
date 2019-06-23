@@ -1,42 +1,57 @@
-# AAI V.0.3.8-2
-APM AUTO INSTALL V.0.3.8 사용 설명서
+AAI - APM AUTO INSTALL V.0.3.9
+
+쉽고 빠른 설치, 운영, 업데이트까지 고려한 설계
+쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
+사용자 생성,삭제,백업 스크립트 사용으로 시스템 계정, 디비 계정 자동 생성 지원
+Let's Encrypt - 무료 SSL 인증서 발급 및 갱신 지원 
+
+AAI GIT 설치 방법
+
+SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
+아래 명령어를 사용해서 설치를 진행 합니다. 설치 화면에서 'y' 만 누르면 설치가 진행 됩니다.
+
+cd /root/ \
+&& git clone https://github.com/joosung/AAI.git \
+&& cd AAI \
+&& ./install.sh
+
+
+AAI 다운로드 설치 방법
 
 1. SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
+2. AAI-master 압축 파일을 다운로드 받으시고 압축을 해제 후 AAI 폴더를 자신의 서버 /root 폴더에 업로드한다.
+3. Shell(터미널)에서 AAI 폴더내의 install.sh 파일의 퍼미션을 chmod 700 install.sh 로 해당 파일의 퍼미션을 700 으로 수정한다.
+4. ./install.sh 입력후 엔터를 치고 설치를 진행 하시면 됩니다.
 
-2. APMAUTOINSTALL V.0.3.8 압축 파일을 다운로드 받으시고 압축을 해제 후 APM 폴더를 자신의 서버 /root 폴더에 업로드한다.
 
-3. Shell(터미널)에서 APM 폴더내의 APMinstaller.sh 파일의 퍼미션을 chmod 700 APMinstaller.sh 로 해당 파일의 퍼미션을 700 으로 수정한다.
+AAI  주요 명령
 
-4. ./APMinstaller.sh 입력후 엔터를 치고 설치를 진행 하시면 됩니다.
+1. adduser.sh
+   사용자 계정 추가, VirtualHost 추가, Mysql 계정 추가, Let's Encrypt SSL 추가 를 한번에 또는 개별적으로 진행 할 수 있습니다.
 
-5. 작업이 완료후 로컬 아이피 로 이동 하시면 Welcome 페이지가 출력되면 모든 작업이 무사히 완료된 것입니다.
+2. deluser.sh
+   사용자 계정 삭제, VirtualHost 삭제, Mysql 계정 삭제, Let's Encrypt SSL 삭제 를 한번에 또는 개별적으로 진행 할 수 있습니다.
 
-6. 설치 끝에 마리아디비 안전 설치를 진행 하시고 마리아db 패스워드와 기타 설정을 끝내시기 바랍니다.
+3. /etc/cron.daily/backup 파일을 에디터로 열고 '패스워드' 를 찾아서 mysql root 패스워드로 교체 합니다.
 
-7. phpMyAdmin 접속 경로는 http://ip/phpMyAdmin 또는 http://localhost/phpMyAdmin 으로 접속 하시면 됩니다.
+4. phpMyAdmin 접속 경로는 http://ip/phpMyAdmin 또는 http://도메인/phpMyAdmin 으로 접속 하시면 됩니다.
 
-8. 계정 생성은 adduser.sh 파일을 셀에서 ./adduser.sh 를 실행 하시면 안내에 따라 번호를 입력후 따라 하시면 사용자 계정, 가상호스트, db, ssl 설치 및 생성이 가능 합니다.
-
-9. 스푸핑 에 관련된 메일을 받고 싶을땐 /etc/sysconfig/arpwatch 파일을 열어서 아래와 같이 수정 하세요.
+5. 스푸핑 에 관련된 메일을 받고 싶을땐 /etc/sysconfig/arpwatch 파일을 열어서 아래와 같이 수정 하세요.
    OPTIonS="-u pcap -e '메일주소' -s '보내는이(Arpwatch)' -n 'ㅣ자신의IP/24'"
 
-10. 설지 작업이 모두 끝나면 ./chkrootkit 그리고 clamscan -r /home --move=/virus 를 각각 실행해서 바이러스와 멀웨어 등이 없는지 확인 합니다. 있다면 삭제 해 줍니다.
-
-11. /etc/cron.daily/backup 파일을 에디터로 열고 '패스워드' 를 찾아서 DB 루트 패스워드로 교체 합니다.
-
-12. bind 설치 (네임서버(127.0.0.1)의 경우 ‘설치’만 해두어도 캐싱네임서버로 사용할 수 있어 메일 송수신 속도향상에 도움이 됩니다.) 
-
-13. ntp 설치로 서버 표준시간 동기화를 적용 했습니다.
+6. 설지 작업이 모두 끝나면 ./chkrootkit 그리고 clamscan -r /home --move=/virus 를 각각 실행해서 바이러스와 멀웨어 등이 없는지 확인 합니다. 
+   테스트 용 바이러스 파일이 생성되므로 있다면 삭제 해 줍니다.
 
 
 그외 소소한(?) 튜닝이나 설정은 구글 검색을 또는 아파치존 QnA 를 통하여 질문 하시면서 자신이 사용하기 좋은 환경을 만들어 가시면 됩니다.
 
-AAI 설치 및 계정생성과 삭제 방법을 아파치존에서 동영상으로 안내 합니다.
+AAI 설치 및 계정 생성과 삭제 방법을 아파치존에서 동영상으로 안내 드리며, 궁금한점 또는 문의사항도 아파치존 QnA를 이용해 주시기 바랍니다.
 
 https://apachezone.com
 
+
 <pre>
-APM 설치 버전은 아래와 같습니다.
+APM 및 설치 버전은 아래와 같습니다.
 
 httpd 2.4.38
 php 7.2.14
@@ -62,5 +77,4 @@ GeoIP 1.1.1
 사용자 계정 생성 스크립트 1.0.2
 사용자 계정 삭제 스크립트 1.0.2 등...... 그외 필요한 라이브러리도 같이 설치가 됩니다. 
 </pre>
-
 
