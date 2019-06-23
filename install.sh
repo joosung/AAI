@@ -34,6 +34,10 @@ cd /root/AAI/APM
 
 chmod 700 APMinstaller.sh
 
+chmod 700 /root/AAI/adduser.sh
+
+chmod 700 /root/AAI/deluser.sh
+
 sh APMinstaller.sh
 
 cd /root/AAI

@@ -13,7 +13,7 @@ SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
 cd /root/ \
 && git clone https://github.com/joosung/AAI.git \
 && cd AAI \
-&& ./install.sh
+&& sh install.sh
 
 
 AAI 다운로드 설치 방법
