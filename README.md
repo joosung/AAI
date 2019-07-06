@@ -39,15 +39,13 @@ AAI  주요 명령
 
 3. /etc/cron.daily/backup 파일을 에디터로 열고 '패스워드' 를 찾아서 mysql root 패스워드로 교체 합니다.
 
-4. phpMyAdmin 접속 경로는 http://ip/phpMyAdmin 또는 http://도메인/phpMyAdmin 으로 접속 하시면 됩니다.
-
-5. 스푸핑 에 관련된 메일을 받고 싶을땐 /etc/sysconfig/arpwatch 파일을 열어서 아래와 같이 수정 하세요.
+4. 스푸핑 에 관련된 메일을 받고 싶을땐 /etc/sysconfig/arpwatch 파일을 열어서 아래와 같이 수정 하세요.
    OPTIonS="-u pcap -e '메일주소' -s '보내는이(Arpwatch)' -n 'ㅣ자신의IP/24'"
 
-6. 설지 작업이 모두 끝나면 ./chkrootkit 그리고 clamscan -r /home --move=/virus 를 각각 실행해서 바이러스와 멀웨어 등이 없는지 확인 합니다. 
+5. 설지 작업이 모두 끝나면 ./chkrootkit 그리고 clamscan -r /home --move=/virus 를 각각 실행해서 바이러스와 멀웨어 등이 없는지 확인 합니다. 
    테스트 용 바이러스 파일이 생성되므로 있다면 삭제 해 줍니다.
 
-7. 사용중인 php 버전을 다른 버전으로 교체 할 경우에는 /etc/httpd/conf.d/계정명.conf 파일을 에디터로 열고 
+6. 사용중인 php 버전을 다른 버전으로 교체 할 경우에는 /etc/httpd/conf.d/계정명.conf 파일을 에디터로 열고 
    SetHandler "proxy:fcgi://127.0.0.1:9000" 이부분을 찾아서 9000 부분의 뒷자리 두 숫자를 수정해 주시면 됩니다.
    예 : PHP 5.6 사용시 9056, PHP 7.0 사용시 9070, PHP 7.4 사용시 9074 등으로 수정 후 AAI 폴더내의 ./restart.sh 를 진행해 주시면 됩니다.   
 
