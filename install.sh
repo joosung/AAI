@@ -2,10 +2,10 @@
 
 #####################################################################################
 #                                                                                   #
-# * APMinstaller v.0.3.9                                                            #
+# * APMinstaller v.1.0                                                              #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.3.X, PHP 7.2.X setup shell script                     #
-# * Created Date    : 2019/6/23                                                     #
+# * Created Date    : 2019/7/5                                                      #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -37,6 +37,8 @@ chmod 700 APMinstaller.sh
 chmod 700 /root/AAI/adduser.sh
 
 chmod 700 /root/AAI/deluser.sh
+
+chmod 700 /root/AAI/restart.sh
 
 sh APMinstaller.sh
 

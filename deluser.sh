@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ##########################################################
-# * deluser V 1.0.1                                      #
-# * APMinstaller v.0.3.9  전용                            #
-# * Created Date    : 2019/1/3                           #
+# * deluser V 1.1                                        #
+# * APMinstaller v.1.0  전용                              #
+# * Created Date    : 2019/6/30                          #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )  # 
 ##########################################################
 
@@ -11,13 +11,13 @@ echo "
 
                [1] 사용자 계정, VHOST, DB, SSL 통합 삭제하기.
 	       
-	       [2] 사용자 계정 삭제하기.
+	       [2] 사용자 계정 개별 삭제하기.
                
-               [3] VirtualHost 삭제하기.                 
+               [3] VirtualHost 개별 삭제하기.                 
 
-               [4] Mysql 계정 삭제하기.                  
+               [4] Mysql 계정 개별 삭제하기.                  
 
-               [5] Let's Encrypt SSL 삭제하기.   
+               [5] Let's Encrypt SSL 개별 삭제하기.   
 	       
 "
 
@@ -30,7 +30,7 @@ case "$Num" in
 1)
 echo =======================================================
 echo
-echo  "< 계정 사용자 삭제하기>"
+echo  "< 계정 사용자 통합 삭제하기>"
 echo
 echo  계정 사용자 ID 와 도메인을 입력       
 echo
@@ -92,7 +92,7 @@ exit;;
 2)
 echo =======================================================
 echo
-echo  "< 계정 사용자 삭제하기>"
+echo  "< 계정 사용자 개별 삭제하기>"
 echo
 echo  계정 사용자 ID 를 입력       
 echo
@@ -133,7 +133,7 @@ exit;;
 
 echo =======================================================
 echo
-echo  "< 가상 호스트 추가하기 >"
+echo  "< 가상 호스트 개별 삭제하기 >"
 echo
 echo  계정 도메인, 계정ID 를 입력   
 echo
@@ -172,7 +172,7 @@ exit;;
 4)
 echo =======================================================
 echo
-echo  "< Myslq 계정 삭제하기  >"
+echo  "< Myslq 계정 개별 삭제하기  >"
 echo
 echo  계정ID, MySql Password를 입력
 echo
@@ -214,7 +214,7 @@ exit;;
 5)
 echo =======================================================
 echo
-echo  "< Let's Encrypt SSL 삭제하기>"
+echo  "< Let's Encrypt SSL 개별 삭제하기>"
 echo
 echo  계정ID, 계정Password 를 입력       
 echo

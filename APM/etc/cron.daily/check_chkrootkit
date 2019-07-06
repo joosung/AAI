@@ -1,5 +1,5 @@
 #!/bin/bash
-BASE=/root/AAI/chkrootkit/
+BASE=/root/APM/chkrootkit/
 cd $BASE
 chk='./chkrootkit'
 if [ -n "$chk" ]; then
