@@ -393,11 +393,11 @@ mkdir /etc/skel/public_html
 
 chmod 707 /etc/skel/public_html
 
-chmod 700 /root/AAI/APM/adduser.sh
+chmod 700 /root/AAI/adduser.sh
 
-chmod 700 /root/AAI/APM/deluser.sh
+chmod 700 /root/AAI/deluser.sh
 
-chmod 700 /root/AAI/APM/restart.sh
+chmod 700 /root/AAI/restart.sh
 
 cp /root/AAI/APM/skel/index.html /etc/skel/public_html/
 
