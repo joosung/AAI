@@ -1,5 +1,5 @@
 #!/bin/sh
-if certbot renew --dry-run > /var/log/letsencrypt/renew.log 2>&1 ; then
+if certbot renew > /var/log/letsencrypt/renew.log 2>&1 ; then
    service httpd reload
 fi
 exit
