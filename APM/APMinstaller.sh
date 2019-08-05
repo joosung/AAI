@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * APMinstaller v.1.0                                                              #
+# * APMinstaller v.1.1                                                              #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.3.X, PHP 7.2.X setup shell script                     #
-# * Created Date    : 2019/7/5                                                      #
+# * Created Date    : 2019/8/5                                                      #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -21,8 +21,8 @@ yum -y install wget openssh-clients bind-utils git nc vim-enhanced man ntsysv \
 iotop sysstat strace lsof mc lrzsz zip unzip bzip2 glibc* net-tools bind ntp gcc \
 libxml2-devel libXpm-devel gmp-devel libicu-devel t1lib-devel aspell-devel openssl-devel \
 bzip2-devel libcurl-devel libjpeg-devel libvpx-devel libpng-devel freetype-devel readline-devel \
-libxslt-devel pcre-devel curl-devel mysql-devel ncurses-devel 
-gettext-devel net-snmp-devel libevent-devel libtool-ltdl-devel libc-client-devel postgresql-devel bison make
+libxslt-devel pcre-devel curl-devel mysql-devel ncurses-devel autoconf autogen automake zlib-devel libuuid-devel \
+gettext-devel net-snmp-devel libevent-devel libtool-ltdl-devel postgresql-devel bison make pkgconfig
 
 
 cd /etc/yum.repos.d && wget https://repo.codeit.guru/codeit.el`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`.repo
@@ -138,7 +138,7 @@ dnf config-manager --set-enabled remi
 yum -y install php56 php56-php-cli php56-php-fpm \
 php56-php-common php56-php-pdo php56-php-mysqlnd php56-php-mbstring php56-php-mcrypt \
 php56-php-opcache php56-php-xml php56-php-pecl-imagick php56-php-gd php56-php-fileinfo \
-php56-php-pecl-ssh2 php56-php-soap php56-php-devel php56-php-imap php56-php-json php56-php-mysql\
+php56-php-pecl-ssh2 php56-php-soap php56-php-devel php56-php-imap php56-php-json php56-php-mysql \
 php56-php-ldap php56-php-xml php56-php-iconv php56-php-xmlrpc php56-php-snmp php56-php-pgsql \
 php56-php-pecl-apcu php56-php-pecl-geoip php56-php-pecl-memcached php56-php-pecl-redis \
 php56-php-pecl-xdebug php56-php-pecl-mailparse php56-php-process php56-php-ioncube-loader
@@ -469,7 +469,7 @@ default-character-set = utf8" > /etc/my.cnf.d/mysql-aai.cnf
 #                                        #
 ##########################################
 
-cd /root/AAI/APM
+cd /root/AAI/
 
 #chkrootkit 설치
 wget ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit.tar.gz 
@@ -482,7 +482,7 @@ cd chkrootkit
 
 make sense
 
-rm -rf /root/AAI/APM/chkrootkit.tar.gz
+rm -rf /root/AAI/chkrootkit.tar.gz
 
 #mod_evasive mod_security fail2ban.noarch arpwatch 설치
 yum -y install mod_evasive mod_security mod_security_crs fail2ban.noarch arpwatch
@@ -619,7 +619,7 @@ openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 #중요 폴더 및 파일 링크
 ln -s /etc/letsencrypt /root/AAI/letsencrypt
 ln -s /etc/httpd/conf.d /root/AAI/conf.d
-ln -s /etc/my.cnf /root/AAI/my.cnf
+ln -s /etc/my.cnf.d /root/AAI/my.cnf.d
 ln -s /etc/php.ini /root/AAI/php/php.ini
 ln -s /opt/remi/php56/root/etc/php.ini /root/AAI/php/php56.ini
 ln -s /etc/opt/remi/php70/php.ini /root/AAI/php/php70.ini
@@ -630,10 +630,30 @@ ln -s /etc/opt/remi/php74/php.ini /root/AAI/php/php74.ini
 
 service httpd restart
 
+
+##########################################
+#                                        #
+#              Netdata 설치               #
+#                                        #
+##########################################
+cd /root/AAI
+
+git clone https://github.com/firehol/netdata.git --depth=1
+cd netdata
+./netdata-installer.sh
+
+firewall-cmd --permanent --zone=public --add-port=19999/tcp
+firewall-cmd --reload
+
+cd /root/AAI
+
+rm -rf /root/AAI/netdata
+
+service httpd restart
+
 echo ""
 echo ""
 echo "축하 드립니다. APMinstaller 모든 작업이 끝났습니다."
 
 
 exit 0
-
