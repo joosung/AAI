@@ -20,7 +20,9 @@ firewalld 이 설치 되었나 확인 하시고 설치가 안되어 있다면 �
 yum -y install firewalld 
 systemctl start firewalld 
 systemctl enable firewalld
+</pre>
 
+<pre>
 yum -y install git \
 && cd /root/ \
 && git clone https://github.com/joosung/AAI.git \
