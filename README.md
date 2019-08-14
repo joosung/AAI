@@ -13,7 +13,14 @@ AAI GIT 설치 방법
 
 SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
 아래 명령어를 사용해서 설치를 진행 합니다. 설치 화면에서 'y' 만 누르면 설치가 진행 됩니다.
+
+firewalld 이 설치 되었나 확인 하시고 설치가 안되어 있다면 먼저 설치 하시는걸 추천 드립니다.
+
 <pre>
+yum -y install firewalld 
+systemctl start firewalld 
+systemctl enable firewalld
+
 yum -y install git \
 && cd /root/ \
 && git clone https://github.com/joosung/AAI.git \
