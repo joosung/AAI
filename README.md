@@ -70,7 +70,6 @@ ionCube PHP Loader 10.3.6
 Zend OPcache 7.2.19
 Xdebug 2.7.2
 Let's Encrypt 0.34.2
-phpMyAdmin 4.9.0.1
 chkrootkit 0.53
 clamav 101.2-1
 arpwatch 2.1a15-36
