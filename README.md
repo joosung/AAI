@@ -1,10 +1,10 @@
-AAI - APM AUTO INSTALL V.1.1
+AAI - APM AUTO INSTALL V.1.2
 <pre>
 쉽고 빠른 설치, 운영, 업데이트까지 고려한 설계
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
 사용자 생성,삭제,백업 스크립트 사용으로 시스템 계정, 디비 계정 자동 생성 지원
 Let's Encrypt - 무료 SSL 인증서 발급 및 갱신 지원
-Multi PHP 지원 - 5.4, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4b1
+Multi PHP 지원 (base php7.2) - 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4a 
 모니터링 툴 - netdata 지원
 </pre>
 
@@ -13,15 +13,6 @@ AAI GIT 설치 방법
 
 SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
 아래 명령어를 사용해서 설치를 진행 합니다. 설치 화면에서 'y' 만 누르면 설치가 진행 됩니다.
-
-firewalld 이 설치 되었나 확인 하시고 설치가 안되어 있다면 먼저 설치 하시는걸 추천 드립니다.
-
-<pre>
-yum -y install firewalld 
-systemctl start firewalld 
-systemctl enable firewalld
-</pre>
-
 <pre>
 yum -y install git \
 && cd /root/ \
@@ -73,12 +64,13 @@ https://apachezone.com
 APM 및 설치 버전은 아래와 같습니다.
 
 httpd 2.4.41
-php 5.4, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4
+php (base php7.2) 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4
 mariadb 10.3.16
 ionCube PHP Loader 10.3.6
 Zend OPcache 7.2.19
 Xdebug 2.7.2
 Let's Encrypt 0.34.2
+phpMyAdmin 4.9.0.1
 chkrootkit 0.53
 clamav 101.4-1
 arpwatch 2.1a15-36
@@ -90,6 +82,7 @@ mod_qos 11.5-1
 memcache 3.0.9-0.9
 memcached 1.4.15-10
 mod_expires 설정
+ImageMagick 6.9.10.62-1 
 GeoIP 1.1.1
 netdata v1.16.1
 사용지 계정 백업 스크립트 1.0.2

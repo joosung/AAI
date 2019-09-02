@@ -1,6 +1,7 @@
 #!/bin/bash
 
-systemctl restart php-fpm 
+systemctl restart php54-php-fpm 
+systemctl restart php55-php-fpm 
 systemctl restart php56-php-fpm 
 systemctl restart php70-php-fpm 
 systemctl restart php71-php-fpm 
