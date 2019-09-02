@@ -4,7 +4,7 @@ AAI - APM AUTO INSTALL V.1.1
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
 사용자 생성,삭제,백업 스크립트 사용으로 시스템 계정, 디비 계정 자동 생성 지원
 Let's Encrypt - 무료 SSL 인증서 발급 및 갱신 지원
-Multi PHP 지원 - 5.4, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4a
+Multi PHP 지원 - 5.4, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4b1
 모니터링 툴 - netdata 지원
 </pre>
 
@@ -13,6 +13,15 @@ AAI GIT 설치 방법
 
 SSH와 SFTP 는 필히 root 권한으로 접속 합니다.
 아래 명령어를 사용해서 설치를 진행 합니다. 설치 화면에서 'y' 만 누르면 설치가 진행 됩니다.
+
+firewalld 이 설치 되었나 확인 하시고 설치가 안되어 있다면 먼저 설치 하시는걸 추천 드립니다.
+
+<pre>
+yum -y install firewalld 
+systemctl start firewalld 
+systemctl enable firewalld
+</pre>
+
 <pre>
 yum -y install git \
 && cd /root/ \
