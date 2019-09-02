@@ -554,6 +554,9 @@ systemctl enable clamd-scan.service
 systemctl start clamd.service
 systemctl start clamd-scan.service
 
+systemctl stop clamd.service
+systemctl stop clamd-scan.service
+
 mkdir /virus
 mkdir /backup
 mkdir /root/AAI/php
