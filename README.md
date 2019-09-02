@@ -4,7 +4,7 @@ AAI - APM AUTO INSTALL V.1.2
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
 사용자 생성,삭제,백업 스크립트 사용으로 시스템 계정, 디비 계정 자동 생성 지원
 Let's Encrypt - 무료 SSL 인증서 발급 및 갱신 지원
-Multi PHP 지원 (base php7.2) - 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4a 
+Multi PHP 지원 (base php7.2) - 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4b4 
 모니터링 툴 - netdata 지원
 </pre>
 
