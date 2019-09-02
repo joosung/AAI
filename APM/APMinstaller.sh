@@ -554,6 +554,7 @@ systemctl enable clamd-scan.service
 systemctl start clamd.service
 systemctl start clamd-scan.service
 
+#High CPU Usage 로 인하여 중지
 systemctl stop clamd.service
 systemctl stop clamd-scan.service
 
