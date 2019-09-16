@@ -92,7 +92,7 @@ SetEnvIFNoCase Referer $url link_allow
 #계정 폴더 퍼미션 변경
 chmod 701 /home/$id
 
-# Myslq 계정 추가하기 
+# Mysql 계정 추가하기 
 echo "create database $id;
 GRANT ALL PRIVILEGES ON $id.* TO $id@localhost IDENTIFIED by '$pass';" > ./tmp
 
@@ -231,11 +231,11 @@ service httpd restart
 
 exit;;
 
-# Myslq 계정 추가하기 
+# Mysql 계정 추가하기 
 4)
 echo =======================================================
 echo
-echo  "< Myslq 계정 개별 추가하기  >"
+echo  "< Mysql 계정 개별 추가하기  >"
 echo
 echo  계정ID, MySql Password를 입력
 echo

@@ -168,11 +168,11 @@ service httpd restart
 
 exit;;
 
-# Myslq 계정 추가하기 
+# Mysql 계정 추가하기 
 4)
 echo =======================================================
 echo
-echo  "< Myslq 계정 개별 삭제하기  >"
+echo  "< Mysql 계정 개별 삭제하기  >"
 echo
 echo  계정ID, MySql Password를 입력
 echo
