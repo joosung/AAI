@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * APMinstaller v.1.2                                                              #
+# * APMinstaller v.1.3                                                              #
 # * CentOS 7.X   Minimal ISO                                                        #
-# * Apache 2.4.X , MariaDB 10.3.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2019/9/2                                                      #
+# * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
+# * Created Date    : 2019/11/13                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -17,11 +17,11 @@
 ########################################## 
 
 yum -y install wget openssh-clients bind-utils git nc vim-enhanced man ntsysv \
-iotop sysstat strace lsof mc lrzsz zip unzip bzip2 glibc* net-tools bind ntp gcc \
+iotop sysstat strace lsof mc lrzsz zip unzip bzip2 glibc* net-tools bind ntp gcc dnf \
 libxml2-devel libXpm-devel gmp-devel libicu-devel t1lib-devel aspell-devel openssl-devel \
 bzip2-devel libcurl-devel libjpeg-devel libvpx-devel libpng-devel freetype-devel readline-devel \
 libxslt-devel pcre-devel curl-devel mysql-devel ncurses-devel autoconf autogen automake zlib-devel libuuid-devel \
-gettext-devel net-snmp-devel libevent-devel libtool-ltdl-devel postgresql-devel bison make pkgconfig firewalld
+gettext-devel net-snmp-devel libevent-devel libtool-ltdl-devel postgresql-devel bison make pkgconfig firewalld yum-utils
 
 
 cd /etc/yum.repos.d && wget https://repo.codeit.guru/codeit.el`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`.repo
@@ -29,11 +29,11 @@ cd /etc/yum.repos.d && wget https://repo.codeit.guru/codeit.el`rpm -q --qf "%{VE
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 
-yum install -y epel-release yum-utils
+yum install -y epel-release
 
 echo "[mariadb]" > /etc/yum.repos.d/MariaDB.repo
 echo "name = MariaDB" >> /etc/yum.repos.d/MariaDB.repo
-echo "baseurl = http://yum.mariadb.org/10.3/rhel7-amd64" >> /etc/yum.repos.d/MariaDB.repo
+echo "baseurl = http://yum.mariadb.org/10.4/rhel7-amd64" >> /etc/yum.repos.d/MariaDB.repo
 echo "gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB" >> /etc/yum.repos.d/MariaDB.repo
 echo "gpgcheck=1" >> /etc/yum.repos.d/MariaDB.repo 
 
@@ -132,20 +132,8 @@ systemctl restart named.service
 #                                        #
 ########################################## 
 
-yum -y install dnf
-wget http://rpms.remirepo.net/enterprise/remi-release-7.rpm
-dnf install remi-release-7.rpm
-dnf install config-manager
-dnf config-manager --set-enabled remi
-
 yum-config-manager --enable remi-php72
-yum -y install php php-php-cli php-php-fpm \
-php-php-common php-php-pdo php-php-mysqlnd php-php-mbstring php-php-mcrypt \
-php-php-opcache php-php-xml php-php-pecl-imagick php-php-gd php-php-fileinfo \
-php-php-pecl-mysql php-php-pecl-ssh2 php-php-soap php-php-devel php-php-imap \
-php-php-json php-php-ldap php-php-xml php-php-iconv php-php-xmlrpc php-php-snmp \
-php-php-pecl-apcu php-php-pecl-geoip php-php-pecl-memcached php-php-pecl-redis \
-php-php-pecl-xdebug php-php-pecl-mailparse php-php-pgsql php-php-process php-php-ioncube-loader
+yum -y install php 
 
 yum -y install php54 php54-php-cli php54-php-fpm \
 php54-php-common php54-php-pdo php54-php-mysqlnd php54-php-mbstring php54-php-mcrypt \
@@ -499,11 +487,11 @@ phpinfo();
 
 ##########################################
 #                                        #
-#          MARIADB 10.3.X install        #
+#          MARIADB 10.4.X install        #
 #                                        #
 ########################################## 
 
-# MariaDB 10.3.x 설치
+# MariaDB 10.4.x 설치
 yum -y install MariaDB-server MariaDB-client
 
 # MariaDB my.cnf 복사
