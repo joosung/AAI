@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * APMinstaller v.1.3                                                              #
+# * APMinstaller v.1.3.1                                                            #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2019/11/13                                                    #
+# * Created Date    : 2019/11/18                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -107,9 +107,14 @@ firewall-cmd --reload
 
 sed -i '/nameserver/i\nameserver 127.0.0.1' /etc/resolv.conf
 cp -av /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.original
+
 sed -i 's/DirectoryIndex index.html/ DirectoryIndex index.html index.htm index.php index.php3 index.cgi index.jsp/' /etc/httpd/conf/httpd.conf
 sed -i 's/Options Indexes FollowSymLinks/Options FollowSymLinks/' /etc/httpd/conf/httpd.conf
 sed -i 's/#ServerName www.example.com:80/ServerName localhost:80/' /etc/httpd/conf/httpd.conf
+sed -i 's/AllowOverride none/AllowOverride All/' /etc/httpd/conf/httpd.conf
+sed -i 's/#AddHandler cgi-script .cgi/AddHandler cgi-script .cgi/' /etc/httpd/conf/httpd.conf
+sed -i '/AddType application\/x-gzip .gz .tgz/a\    AddType application\/x-httpd-php .htm .html .php .ph php3 .php4 .phtml .inc' /etc/httpd/conf/httpd.conf
+sed -i '/AddType application\/x-httpd-php .htm .html .php .ph php3 .php4 .phtml .inc/a\    AddType application/x-httpd-php-source .phps' /etc/httpd/conf/httpd.conf
 sed -i 's/UserDir disabled/#UserDir disabled/' /etc/httpd/conf.d/userdir.conf
 sed -i 's/#UserDir public_html/UserDir public_html/' /etc/httpd/conf.d/userdir.conf
 sed -i 's/Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec/Options MultiViews SymLinksIfOwnerMatch IncludesNoExec/' /etc/httpd/conf.d/userdir.conf
@@ -683,7 +688,7 @@ chmod 700 /etc/cron.daily/backup
 chmod 700 /etc/cron.daily/check_chkrootkit
 chmod 700 /etc/cron.daily/letsencrypt-renew
 
-echo "00 20 * * * /root/check_chkrootkit" >> /etc/crontab
+echo "00 20 * * * /root/cron.daily/check_chkrootkit" >> /etc/crontab
 echo "01 02,14 * * * /etc/cron.daily/letsencrypt-renew" >> /etc/crontab
 echo "01 01 * * 7 /root/AAI/clamav.sh" >> /etc/crontab
 
