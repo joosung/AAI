@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * APMinstaller v.1.3.1                                                            #
+# * CentOS APMinstaller v.1.5                                                       #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2019/11/18                                                    #
+# * Created Date    : 2019/11/30                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -696,6 +696,13 @@ echo "01 01 * * 7 /root/AAI/clamav.sh" >> /etc/crontab
 #openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
+#http2 설정
+echo"
+<IfModule http2_module>
+ProtocolsHonorOrder On
+Protocols h2 h2c http/1.1
+</IfModule>" >> /etc/httpd/conf.modules.d/10-h2.conf
+
 #중요 폴더 및 파일 링크
 ln -s /etc/letsencrypt /root/AAI/letsencrypt
 ln -s /etc/httpd/conf.d /root/AAI/conf.d
@@ -712,26 +719,25 @@ ln -s /etc/opt/remi/php74/php.ini /root/AAI/php/php74.ini
 
 service httpd restart
 
-
-##########################################
-#                                        #
-#              Netdata 설치               #
-#                                        #
-##########################################
 cd /root/AAI
 
-git clone https://github.com/firehol/netdata.git --depth=1
-cd netdata
-./netdata-installer.sh
+##########################################
+#                                        #
+#             Cockpit install            #
+#                                        #
+########################################## 
 
-firewall-cmd --permanent --zone=public --add-port=19999/tcp
+yum install -y cockpit
+
+systemctl start cockpit
+
+systemctl enable cockpit
+
+firewall-cmd --permanent --zone=public --add-port=9090/tcp
+
 firewall-cmd --reload
 
-cd /root/AAI
-
-rm -rf /root/AAI/netdata
-
-service httpd restart
+sh restart.sh
 
 echo ""
 echo ""
