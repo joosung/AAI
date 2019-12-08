@@ -44,9 +44,6 @@ sh APMinstaller.sh
 
 cd /root/AAI
 
-#설치 파일 삭제
-rm -rf /root/AAI/APM
-
 echo ""
 echo ""
 echo "AAI 설치 완료!"
@@ -73,7 +70,7 @@ fi
 
 echo""
 echo "phpMyAdmin 설치를 시작 합니다."
-cd /root/UAAI/APM
+cd /root/AAI/APM
 
 chmod 700 phpMyAdmin.sh
 
@@ -87,9 +84,9 @@ echo ""
 echo ""
 
 #설치 파일 삭제
-rm -rf /root/UAAI/APM
+rm -rf /root/AAI/APM
 echo ""
-rm -rf /root/UAAI/install.sh
+rm -rf /root/AAI/install.sh
 echo ""
 exit;
 
