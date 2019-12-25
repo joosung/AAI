@@ -73,7 +73,7 @@ Zend OPcache 7.2.24
 Xdebug 2.8.0
 Let's Encrypt 0.39.0
 chkrootkit 0.53
-clamav 101.4-1
+clamav 101.5-1
 arpwatch 2.1a15-36
 fail2ban 0.9.7-1
 mod_evasive 1.10.1-22
