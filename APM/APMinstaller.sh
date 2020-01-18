@@ -697,7 +697,7 @@ echo "01 01 * * 7 /root/AAI/clamav.sh" >> /etc/crontab
 openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 #http2 설정
-echo"
+echo "
 <IfModule http2_module>
 ProtocolsHonorOrder On
 Protocols h2 h2c http/1.1
