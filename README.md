@@ -73,7 +73,7 @@ Zend OPcache 7.2.24
 Xdebug 2.8.0
 Let's Encrypt 0.39.0
 chkrootkit 0.53
-clamav 102.2
+clamav 102.2-4
 arpwatch 2.1a15-36
 fail2ban 0.9.7-1
 mod_evasive 1.10.1-22
@@ -90,6 +90,6 @@ cockpit
 사용자 계정 삭제 스크립트 등...... 그외 필요한 라이브러리도 같이 설치가 됩니다. 
 </pre>
 
-설치후 phpMyAdmin 접근이 불가 했던 부분을 수정 했습니다.
+clamav 버전업에 따른 수정 버전 입니다.
 
 **해당 버전은 해당 APM 및 라이브러리 업데이트에 따라 달라 질 수 있습니다.
