@@ -5,7 +5,7 @@
 # * CentOS APMinstaller v.1.5                                                       #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2019/11/30                                                    #
+# * Created Date    : 2020/04/07                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -575,7 +575,7 @@ service arpwatch restart
 #clamav 설치
 yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
-cp /usr/share/doc/clamd-0.101.5/clamd.conf /etc/clamd.conf
+cp /usr/share/doc/clamd-0.102.2/clamd.conf /etc/clamd.conf
 
 sed -i '/^Example/d' /etc/clamd.conf
 sed -i 's/User <USER>/User clamscan/' /etc/clamd.conf
