@@ -2,7 +2,7 @@
  
 #####################################################################################
 #                                                                                   #
-# * CentOS APMinstaller v.1.5                                                       #
+# * CentOS APMinstaller v.1.5.2                                                     #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
 # * Created Date    : 2020/04/07                                                    #
@@ -603,8 +603,6 @@ WantedBy=multi-user.target" >> /usr/lib/systemd/system/clam-freshclam.service
 systemctl enable clam-freshclam.service
 systemctl start clam-freshclam.service
 mv /usr/lib/systemd/system/clamd\@.service /usr/lib/systemd/system/clamd.service
-mv /usr/lib/systemd/system/clamd\@scan.service /usr/lib/systemd/system/clamd-scan.service
-sed -i 's/clamd@.service/clamd.service/' /usr/lib/systemd/system/clamd-scan.service
 rm -rf /usr/lib/systemd/system/clamd.service
 
 echo "[Unit]
@@ -624,13 +622,11 @@ sed -i '/^Example$/d' /etc/clamd.d/scan.conf
 sed -i -e 's/#LocalSocket \/var\/run\/clamd.scan\/clamd.sock/LocalSocket \/var\/run\/clamd.scan\/clamd.sock/g' /etc/clamd.d/scan.conf
 
 systemctl enable clamd.service
-systemctl enable clamd-scan.service
 
 systemctl start clamd.service
-systemctl start clamd-scan.service
 
 systemctl stop clamd.service
-systemctl stop clamd-scan.service
+
 
 mkdir /virus
 mkdir /backup
