@@ -558,8 +558,8 @@ rm -rf /root/AAI/chkrootkit.tar.gz
 #mod_evasive mod_security fail2ban.noarch arpwatch 설치
 yum -y install mod_evasive mod_security mod_security_crs fail2ban.noarch arpwatch
 
-sed -i 's/SecDefaultAction \"phase:1,deny,log\"/SecDefaultAction \"phase:1,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
-sed -i 's/SecDefaultAction \"phase:2,deny,log\"/SecDefaultAction \"phase:2,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
+#sed -i 's/SecDefaultAction \"phase:1,deny,log\"/SecDefaultAction \"phase:1,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
+#sed -i 's/SecDefaultAction \"phase:2,deny,log\"/SecDefaultAction \"phase:2,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
 sed -i 's/SecRuleEngine On/SecRuleEngine DetectionOnly/' /etc/httpd/conf.d/mod_security.conf
 
 sed -i 's/DOSPageCount        2/DOSPageCount        100/' /etc/httpd/conf.d/mod_evasive.conf
