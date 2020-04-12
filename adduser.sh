@@ -81,12 +81,12 @@ ServerAlias www.$url
 </FilesMatch>
     ErrorLog logs/$url-error_log
     CustomLog logs/$url-access_log common
-SetEnvIFNoCase Referer $url link_allow 
-<FilesMatch \"\.(gif|jpg|jpeg|png|bmp)$\"> 
-  Order allow,deny 
-  allow from env=link_allow 
-  #deny from all 
-</FilesMatch> 
+#SetEnvIFNoCase Referer $url link_allow 
+#<FilesMatch \"\.(gif|jpg|jpeg|png|bmp)$\"> 
+#  Order allow,deny 
+#  allow from env=link_allow 
+#  deny from all 
+#</FilesMatch> 
 </VirtualHost>" >> /etc/httpd/conf.d/$id.conf
 
 #계정 폴더 퍼미션 변경
@@ -216,12 +216,12 @@ ServerAlias www.$url
 </FilesMatch>
     ErrorLog logs/$url-error_log
     CustomLog logs/$url-access_log common
-SetEnvIFNoCase Referer $url link_allow 
-<FilesMatch \"\.(gif|jpg|jpeg|png|bmp)$\"> 
-  Order allow,deny 
-  allow from env=link_allow 
-  #deny from all 
-</FilesMatch> 
+#SetEnvIFNoCase Referer $url link_allow 
+#<FilesMatch \"\.(gif|jpg|jpeg|png|bmp)$\"> 
+#  Order allow,deny 
+#  allow from env=link_allow 
+#  deny from all 
+#</FilesMatch> 
 </VirtualHost>" >> /etc/httpd/conf.d/$id.conf
 
 echo "가상 호스트 추가 완료!"
