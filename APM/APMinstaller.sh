@@ -520,14 +520,14 @@ systemctl start smartd
 ##########################################
 
 echo "[mysql]
-default-character-set = utf8
+default-character-set = utf8mb4
  
 [mysqld]
 character-set-client-handshake=FALSE
-init_connect="SET collation_connection = utf8_general_ci"
-init_connect="SET NAMES utf8"
-character-set-server = utf8
-collation-server = utf8_general_ci
+init_connect="SET collation_connection = utf8mb4_unicode_ci"
+init_connect="SET NAMES utf8mb4"
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
   
 [client]
 default-character-set = utf8" > /etc/my.cnf.d/mysql-aai.cnf
@@ -727,7 +727,7 @@ yum install -y cockpit
 
 systemctl start cockpit
 
-systemctl enable cockpit
+systemctl enable --now cockpit.socket
 
 firewall-cmd --permanent --zone=public --add-port=9090/tcp
 
