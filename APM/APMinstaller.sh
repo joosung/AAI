@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * CentOS APMinstaller v.1.5.2                                                     #
+# * CentOS APMinstaller v.1.5.3                                                     #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2020/04/07                                                    #
+# * Created Date    : 2020/10/11                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -520,14 +520,14 @@ systemctl start smartd
 ##########################################
 
 echo "[mysql]
-default-character-set = utf8mb4
+default-character-set = utf8
  
 [mysqld]
 character-set-client-handshake=FALSE
-init_connect="SET collation_connection = utf8mb4_unicode_ci"
-init_connect="SET NAMES utf8mb4"
-character-set-server = utf8mb4
-collation-server = utf8mb4_unicode_ci
+init_connect="SET collation_connection = utf8_general_ci"
+init_connect="SET NAMES utf8"
+character-set-server = utf8
+collation-server = utf8_general_ci
   
 [client]
 default-character-set = utf8" > /etc/my.cnf.d/mysql-aai.cnf
@@ -558,8 +558,8 @@ rm -rf /root/AAI/chkrootkit.tar.gz
 #mod_evasive mod_security fail2ban.noarch arpwatch 설치
 yum -y install mod_evasive mod_security mod_security_crs fail2ban.noarch arpwatch
 
-sed -i 's/SecDefaultAction \"phase:1,deny,log\"/SecDefaultAction \"phase:1,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
-sed -i 's/SecDefaultAction \"phase:2,deny,log\"/SecDefaultAction \"phase:2,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
+#sed -i 's/SecDefaultAction \"phase:1,deny,log\"/SecDefaultAction \"phase:1,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
+#sed -i 's/SecDefaultAction \"phase:2,deny,log\"/SecDefaultAction \"phase:2,deny,log,auditlog\"/' /etc/httpd/modsecurity.d/modsecurity_crs_10_config.conf
 sed -i 's/SecRuleEngine On/SecRuleEngine DetectionOnly/' /etc/httpd/conf.d/mod_security.conf
 
 sed -i 's/DOSPageCount        2/DOSPageCount        100/' /etc/httpd/conf.d/mod_evasive.conf
@@ -575,7 +575,7 @@ service arpwatch restart
 #clamav 설치
 yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
-cp /usr/share/doc/clamd-0.102.2/clamd.conf /etc/clamd.conf
+cp /usr/share/doc/clamd-0.104.1/clamd.conf /etc/clamd.conf
 
 sed -i '/^Example/d' /etc/clamd.conf
 sed -i 's/User <USER>/User clamscan/' /etc/clamd.conf
