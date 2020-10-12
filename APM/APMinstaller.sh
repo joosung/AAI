@@ -723,7 +723,7 @@ cd /root/AAI
 #                                        #
 ########################################## 
 
-yum install -y cockpit
+yum install -y cockpit cockpit-storaged
 
 systemctl start cockpit
 
