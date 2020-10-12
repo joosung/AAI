@@ -84,7 +84,7 @@ memcached 1.4.15-10
 mod_expires 설정
 ImageMagick 6.9.10.75
 GeoIP 1.1.1
-cockpit
+cockpit - cockpit-storaged 추가
 사용지 계정 백업 스크립트 
 사용자 계정 생성 스크립트 
 사용자 계정 삭제 스크립트 등...... 그외 필요한 라이브러리도 같이 설치가 됩니다. 
