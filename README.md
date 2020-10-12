@@ -1,4 +1,4 @@
-AAI - APM AUTO INSTALL V.1.5.2
+AAI - APM AUTO INSTALL V.1.5.3
 <pre>
 쉽고 빠른 설치, 운영, 업데이트까지 고려한 설계
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
@@ -73,7 +73,7 @@ Zend OPcache 7.2.24
 Xdebug 2.8.0
 Let's Encrypt 0.39.0
 chkrootkit 0.53
-clamav 102.2-4
+clamav 104.1
 arpwatch 2.1a15-36
 fail2ban 0.9.7-1
 mod_evasive 1.10.1-22
