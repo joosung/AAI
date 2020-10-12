@@ -575,7 +575,7 @@ service arpwatch restart
 #clamav 설치
 yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
-cp /usr/share/doc/clamd-0.104.1/clamd.conf /etc/clamd.conf
+cp /usr/share/doc/clamd-0.102.4/clamd.conf /etc/clamd.conf
 
 sed -i '/^Example/d' /etc/clamd.conf
 sed -i 's/User <USER>/User clamscan/' /etc/clamd.conf
