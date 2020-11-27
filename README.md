@@ -1,10 +1,10 @@
-AAI - APM AUTO INSTALL V.1.5.3
+AAI - APM AUTO INSTALL V.1.5.4
 <pre>
 쉽고 빠른 설치, 운영, 업데이트까지 고려한 설계
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
 사용자 생성,삭제,백업 스크립트 사용으로 시스템 계정, 디비 계정 자동 생성 지원
 Let's Encrypt - 무료 SSL 인증서 발급 및 갱신 지원
-Multi PHP 지원 (base php7.2) - 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4RC6 
+Multi PHP 지원 (base php7.2) - 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0
 모니터링 툴 - cockpit 지원
 </pre>
 
@@ -48,7 +48,7 @@ AAI  주요 명령
 
 6. 사용중인 php 버전을 다른 버전으로 교체 할 경우에는 /etc/httpd/conf.d/계정명.conf 파일을 에디터로 열고 
    SetHandler "proxy:fcgi://127.0.0.1:9000" 이부분을 찾아서 9000 부분의 뒷자리 두 숫자를 수정해 주시면 됩니다.
-   예 : PHP 5.6 사용시 9056, PHP 7.0 사용시 9070, PHP 7.4 사용시 9074 등으로 수정 후 AAI 폴더내의 ./restart.sh 를 진행해 주시면 됩니다.  
+   예 : PHP 5.6 사용시 9056, PHP 7.0 사용시 9070, PHP 8.0 사용시 9080 등으로 수정 후 AAI 폴더내의 ./restart.sh 를 진행해 주시면 됩니다.  
 
 7. cockpit 지원으로 인하여 port 9090 를 서버 방화벽에서 열어 주셔야 합니다.
 
@@ -66,7 +66,7 @@ https://apachezone.com
 APM 및 설치 버전은 아래와 같습니다.
 
 httpd 2.4.41
-php (base php7.2) 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4
+php (base php7.2) 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 80
 mariadb 10.4.10
 ionCube PHP Loader 10.3.9
 Zend OPcache 7.2.24

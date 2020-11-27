@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * CentOS APMinstaller v.1.5.3                                                     #
+# * CentOS APMinstaller v.1.5.4                                                     #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2020/10/11                                                    #
+# * Created Date    : 2020/11/26                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -204,6 +204,14 @@ php74-php-json php74-php-ldap php74-php-xml php74-php-iconv php74-php-xmlrpc php
 php74-php-pecl-apcu php74-php-pecl-geoip php74-php-pecl-memcached php74-php-pecl-redis \
 php74-php-pecl-xdebug php74-php-pecl-mailparse php74-php-pgsql php74-php-process php74-php-ioncube-loader
 
+yum -y install php80 php80-php-cli php80-php-fpm \
+php74-php-common php80-php-pdo php80-php-mysqlnd php80-php-mbstring php80-php-mcrypt \
+php80-php-opcache php80-php-xml php80-php-pecl-imagick php80-php-gd php80-php-fileinfo \
+php80-php-pecl-mysql php80-php-pecl-ssh2 php80-php-soap php80-php-devel php80-php-imap \
+php80-php-json php80-php-ldap php80-php-xml php80-php-iconv php80-php-xmlrpc php80-php-snmp \
+php80-php-pecl-apcu php80-php-pecl-geoip php80-php-pecl-memcached php80-php-pecl-redis \
+php80-php-pecl-xdebug php80-php-pecl-mailparse php80-php-pgsql php80-php-process php80-php-ioncube-loader
+
 echo 'listen = 127.0.0.1:9054
 pm = ondemand' >> /opt/remi/php54/root/etc/php-fpm.d/www.conf
 
@@ -227,6 +235,9 @@ pm = ondemand' >> /etc/opt/remi/php73/php-fpm.d/www.conf
 
 echo 'listen = 127.0.0.1:9074
 pm = ondemand' >> /etc/opt/remi/php74/php-fpm.d/www.conf
+
+echo 'listen = 127.0.0.1:9080
+pm = ondemand' >> /etc/opt/remi/php80/php-fpm.d/www.conf
 
 
 #systemctl start php-fpm
@@ -255,6 +266,9 @@ systemctl enable php73-php-fpm
 
 systemctl start php74-php-fpm
 systemctl enable php74-php-fpm
+
+systemctl start php80-php-fpm
+systemctl enable php80-php-fpm
 
 sed -i 's/php_value/#php_value/' /etc/httpd/conf.d/php.conf
 
@@ -393,6 +407,20 @@ sed -i 's/;date.timezone =/date.timezone = "Asia\/Seoul"/' /etc/opt/remi/php74/p
 sed -i 's/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 86400/' /etc/opt/remi/php74/php.ini
 sed -i 's/disable_functions =/disable_functions = system,exec,passthru,proc_open,popen,curl_multi_exec,parse_ini_file,show_source/' /etc/opt/remi/php74/php.ini 
 
+cp -av /etc/opt/remi/php80/php.ini /etc/opt/remi/php80/php.ini.original
+sed -i 's/short_open_tag = Off/short_open_tag = On/' /etc/opt/remi/php80/php.ini
+sed -i 's/expose_php = On/expose_php = Off/' /etc/opt/remi/php80/php.ini
+sed -i 's/display_errors = Off/display_errors = On/' /etc/opt/remi/php80/php.ini
+sed -i 's/;error_log = php_errors.log/error_log = php_errors.log/' /etc/opt/remi/php80/php.ini
+sed -i 's/error_reporting = E_ALL \& ~E_DEPRECATED/error_reporting = E_ALL \& ~E_NOTICE \& ~E_DEPRECATED \& ~E_USER_DEPRECATED/' /etc/opt/remi/php80/php.ini
+sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/' /etc/opt/remi/php80/php.ini
+sed -i 's/post_max_size = 8M/post_max_size = 100M/' /etc/opt/remi/php80/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 100M/' /etc/opt/remi/php80/php.ini
+sed -i 's/;date.timezone =/date.timezone = "Asia\/Seoul"/' /etc/opt/remi/php80/php.ini
+sed -i 's/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 86400/' /etc/opt/remi/php80/php.ini
+sed -i 's/disable_functions =/disable_functions = system,exec,passthru,proc_open,popen,curl_multi_exec,parse_ini_file,show_source/' /etc/opt/remi/php74/php.ini 
+
+
 echo "[xdebug]
 xdebug.remote_autostart = 1
 xdebug.remote_connect_back = 1
@@ -456,6 +484,13 @@ xdebug.remote_enable = 1
 xdebug.remote_port = 9009
 xdebug.remote_handler = dbgp" >> /etc/opt/remi/php74/php.ini
 
+echo "[xdebug]
+xdebug.remote_autostart = 1
+xdebug.remote_connect_back = 1
+xdebug.remote_enable = 1
+xdebug.remote_port = 9009
+xdebug.remote_handler = dbgp" >> /etc/opt/remi/php80/php.ini
+
 mkdir /etc/skel/public_html
 
 chmod 707 /etc/skel/public_html
@@ -483,6 +518,7 @@ sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php71/php.i
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php72/php.ini
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php73/php.ini
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php74/php.ini
+sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php80/php.ini
 
 systemctl restart httpd
 
@@ -634,7 +670,7 @@ mkdir /root/AAI/php
 
 #memcache 설치
 yum -y install memcached python-memcached php-pecl-memcache memcached-devel
-#yum -y install php54-php-pecl-memcache php55-php-pecl-memcache php56-php-pecl-memcache php70-php-pecl-memcache php71-php-pecl-memcache php72-php-pecl-memcache php73-php-pecl-memcache php74-php-pecl-memcache
+#yum -y install php54-php-pecl-memcache php55-php-pecl-memcache php56-php-pecl-memcache php70-php-pecl-memcache php71-php-pecl-memcache php72-php-pecl-memcache php73-php-pecl-memcache php74-php-pecl-memcache php80-php-pecl-memcache
 
 sed -i 's/OPTIONS=""/OPTIONS="-l 127.0.0.1"/' /etc/sysconfig/memcached
 
@@ -712,6 +748,7 @@ ln -s /etc/opt/remi/php71/php.ini /root/AAI/php/php71.ini
 ln -s /etc/opt/remi/php72/php.ini /root/AAI/php/php72.ini
 ln -s /etc/opt/remi/php73/php.ini /root/AAI/php/php73.ini
 ln -s /etc/opt/remi/php74/php.ini /root/AAI/php/php74.ini
+ln -s /etc/opt/remi/php80/php.ini /root/AAI/php/php80.ini
 
 service httpd restart
 
