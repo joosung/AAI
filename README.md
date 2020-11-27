@@ -65,9 +65,9 @@ https://apachezone.com
 <pre>
 APM 및 설치 버전은 아래와 같습니다.
 
-httpd 2.4.41
+httpd 2.4.46
 php (base php7.2) 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 80
-mariadb 10.4.10
+mariadb 10.4.15
 ionCube PHP Loader 10.3.9
 Zend OPcache 7.2.24
 Xdebug 2.8.0
