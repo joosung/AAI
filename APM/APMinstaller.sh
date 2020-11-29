@@ -96,6 +96,7 @@ firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --permanent --zone=public --add-port=3306/tcp
 firewall-cmd --permanent --zone=public --add-port=19999/tcp
+firewall-cmd --permanent --zone=public --add-port=9090/tcp
 firewall-cmd --reload
 
 ##########################################
@@ -204,13 +205,14 @@ php74-php-json php74-php-ldap php74-php-xml php74-php-iconv php74-php-xmlrpc php
 php74-php-pecl-apcu php74-php-pecl-geoip php74-php-pecl-memcached php74-php-pecl-redis \
 php74-php-pecl-xdebug php74-php-pecl-mailparse php74-php-pgsql php74-php-process php74-php-ioncube-loader
 
+##php8에서는 아직 지원 안됨 - php80-php-pecl-mysql php80-php-ioncube-loader
 yum -y install php80 php80-php-cli php80-php-fpm \
 php74-php-common php80-php-pdo php80-php-mysqlnd php80-php-mbstring php80-php-mcrypt \
 php80-php-opcache php80-php-xml php80-php-pecl-imagick php80-php-gd php80-php-fileinfo \
-php80-php-pecl-mysql php80-php-pecl-ssh2 php80-php-soap php80-php-devel php80-php-imap \
+php80-php-pecl-ssh2 php80-php-soap php80-php-devel php80-php-imap \
 php80-php-json php80-php-ldap php80-php-xml php80-php-iconv php80-php-xmlrpc php80-php-snmp \
 php80-php-pecl-apcu php80-php-pecl-geoip php80-php-pecl-memcached php80-php-pecl-redis \
-php80-php-pecl-xdebug php80-php-pecl-mailparse php80-php-pgsql php80-php-process php80-php-ioncube-loader
+php80-php-pecl-xdebug php80-php-pecl-mailparse php80-php-pgsql php80-php-process
 
 echo 'listen = 127.0.0.1:9054
 pm = ondemand' >> /opt/remi/php54/root/etc/php-fpm.d/www.conf
@@ -765,10 +767,6 @@ yum install -y cockpit cockpit-storaged
 systemctl start cockpit
 
 systemctl enable --now cockpit.socket
-
-firewall-cmd --permanent --zone=public --add-port=9090/tcp
-
-firewall-cmd --reload
 
 sh restart.sh
 
