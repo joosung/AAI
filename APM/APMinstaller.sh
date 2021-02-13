@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * CentOS APMinstaller v.1.5.4                                                     #
+# * CentOS APMinstaller v.1.5.5                                                     #
 # * CentOS 7.X   Minimal ISO                                                        #
-# * Apache 2.4.X , MariaDB 10.4.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2020/11/26                                                    #
+# * Apache 2.4.X , MariaDB 10.5.X, Multi-PHP(base php7.2) setup shell script        #
+# * Created Date    : 2021/02/12                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -33,7 +33,7 @@ yum install -y epel-release
 
 echo "[mariadb]" > /etc/yum.repos.d/MariaDB.repo
 echo "name = MariaDB" >> /etc/yum.repos.d/MariaDB.repo
-echo "baseurl = http://yum.mariadb.org/10.4/rhel7-amd64" >> /etc/yum.repos.d/MariaDB.repo
+echo "baseurl = http://yum.mariadb.org/10.5/rhel7-amd64" >> /etc/yum.repos.d/MariaDB.repo
 echo "gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB" >> /etc/yum.repos.d/MariaDB.repo
 echo "gpgcheck=1" >> /etc/yum.repos.d/MariaDB.repo 
 
@@ -530,11 +530,11 @@ phpinfo();
 
 ##########################################
 #                                        #
-#          MARIADB 10.4.X install        #
+#          MARIADB 10.5.X install        #
 #                                        #
 ########################################## 
 
-# MariaDB 10.4.x 설치
+# MariaDB 10.5.x 설치
 yum -y install MariaDB-server MariaDB-client
 
 # MariaDB my.cnf 복사
@@ -613,7 +613,7 @@ service arpwatch restart
 #clamav 설치
 yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
-cp /usr/share/doc/clamd-0.102.4/clamd.conf /etc/clamd.conf
+cp /usr/share/doc/clamd-0.103.0/clamd.conf /etc/clamd.conf
 
 sed -i '/^Example/d' /etc/clamd.conf
 sed -i 's/User <USER>/User clamscan/' /etc/clamd.conf

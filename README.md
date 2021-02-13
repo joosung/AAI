@@ -1,4 +1,4 @@
-AAI - APM AUTO INSTALL V.1.5.4
+AAI - APM AUTO INSTALL V.1.5.5
 <pre>
 쉽고 빠른 설치, 운영, 업데이트까지 고려한 설계
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
@@ -67,13 +67,13 @@ APM 및 설치 버전은 아래와 같습니다.
 
 httpd 2.4.46
 php (base php7.2) 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 80
-mariadb 10.4.15
+mariadb 10.5.8
 ionCube PHP Loader 10.3.9
 Zend OPcache 7.2.24
 Xdebug 2.8.0
 Let's Encrypt 0.39.0
 chkrootkit 0.53
-clamav 102.4
+clamav 103.0
 arpwatch 2.1a15-36
 fail2ban 0.9.7-1
 mod_evasive 1.10.1-22
@@ -83,13 +83,13 @@ memcache 3.0.9-0.9
 memcached 1.4.15-10
 mod_expires 설정
 ImageMagick 6.9.10.75
-GeoIP 1.1.1
+GeoIP 1.5.0
 cockpit - cockpit-storaged 추가
 사용지 계정 백업 스크립트 
 사용자 계정 생성 스크립트 
 사용자 계정 삭제 스크립트 등...... 그외 필요한 라이브러리도 같이 설치가 됩니다. 
 </pre>
 
-clamav 버전업에 따른 수정 버전 입니다.
+MariaDB 와 clamav 버전업에 따른 수정 버전 입니다.
 
 **해당 버전은 해당 APM 및 라이브러리 업데이트에 따라 달라 질 수 있습니다.
