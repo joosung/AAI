@@ -95,7 +95,6 @@ systemctl enable httpd
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --permanent --zone=public --add-port=3306/tcp
-firewall-cmd --permanent --zone=public --add-port=19999/tcp
 firewall-cmd --permanent --zone=public --add-port=9090/tcp
 firewall-cmd --reload
 
