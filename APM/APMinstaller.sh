@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * CentOS APMinstaller v.1.5.5                                                     #
+# * CentOS APMinstaller v.1.5.6                                                     #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.5.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2021/02/12                                                    #
+# * Created Date    : 2021/12/17                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -23,8 +23,7 @@ bzip2-devel libcurl-devel libjpeg-devel libvpx-devel libpng-devel freetype-devel
 libxslt-devel pcre-devel curl-devel mysql-devel ncurses-devel autoconf autogen automake zlib-devel libuuid-devel \
 gettext-devel net-snmp-devel libevent-devel libtool-ltdl-devel postgresql-devel bison make pkgconfig firewalld yum-utils
 
-
-cd /etc/yum.repos.d && wget https://repo.codeit.guru/codeit.el`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`.repo
+cd /etc/yum.repos.d && wget https://repo.codeit.guru/codeit.mainline.el`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`.repo
 
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
@@ -95,6 +94,7 @@ systemctl enable httpd
 firewall-cmd --permanent --zone=public --add-service=http
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --permanent --zone=public --add-port=3306/tcp
+firewall-cmd --permanent --zone=public --add-port=19999/tcp
 firewall-cmd --permanent --zone=public --add-port=9090/tcp
 firewall-cmd --reload
 
@@ -213,6 +213,15 @@ php80-php-json php80-php-ldap php80-php-xml php80-php-iconv php80-php-xmlrpc php
 php80-php-pecl-apcu php80-php-pecl-geoip php80-php-pecl-memcached php80-php-pecl-redis \
 php80-php-pecl-xdebug php80-php-pecl-mailparse php80-php-pgsql php80-php-process
 
+##php8에서는 아직 지원 안됨 - php81-php-pecl-mysql php81-php-ioncube-loader
+yum -y install php81 php81-php-cli php81-php-fpm \
+php74-php-common php81-php-pdo php81-php-mysqlnd php81-php-mbstring php81-php-mcrypt \
+php81-php-opcache php81-php-xml php81-php-pecl-imagick php81-php-gd php81-php-fileinfo \
+php81-php-pecl-ssh2 php81-php-soap php81-php-devel php81-php-imap \
+php81-php-json php81-php-ldap php81-php-xml php81-php-iconv php81-php-xmlrpc php81-php-snmp \
+php81-php-pecl-apcu php81-php-pecl-geoip php81-php-pecl-memcached php81-php-pecl-redis \
+php81-php-pecl-xdebug php81-php-pecl-mailparse php81-php-pgsql php81-php-process
+
 echo 'listen = 127.0.0.1:9054
 pm = ondemand' >> /opt/remi/php54/root/etc/php-fpm.d/www.conf
 
@@ -240,6 +249,8 @@ pm = ondemand' >> /etc/opt/remi/php74/php-fpm.d/www.conf
 echo 'listen = 127.0.0.1:9080
 pm = ondemand' >> /etc/opt/remi/php80/php-fpm.d/www.conf
 
+echo 'listen = 127.0.0.1:9081
+pm = ondemand' >> /etc/opt/remi/php81/php-fpm.d/www.conf
 
 #systemctl start php-fpm
 #systemctl enable php-fpm
@@ -270,6 +281,9 @@ systemctl enable php74-php-fpm
 
 systemctl start php80-php-fpm
 systemctl enable php80-php-fpm
+
+systemctl start php81-php-fpm
+systemctl enable php81-php-fpm
 
 sed -i 's/php_value/#php_value/' /etc/httpd/conf.d/php.conf
 
@@ -419,7 +433,20 @@ sed -i 's/post_max_size = 8M/post_max_size = 100M/' /etc/opt/remi/php80/php.ini
 sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 100M/' /etc/opt/remi/php80/php.ini
 sed -i 's/;date.timezone =/date.timezone = "Asia\/Seoul"/' /etc/opt/remi/php80/php.ini
 sed -i 's/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 86400/' /etc/opt/remi/php80/php.ini
-sed -i 's/disable_functions =/disable_functions = system,exec,passthru,proc_open,popen,curl_multi_exec,parse_ini_file,show_source/' /etc/opt/remi/php74/php.ini 
+sed -i 's/disable_functions =/disable_functions = system,exec,passthru,proc_open,popen,curl_multi_exec,parse_ini_file,show_source/' /etc/opt/remi/php80/php.ini 
+
+cp -av /etc/opt/remi/php81/php.ini /etc/opt/remi/php81/php.ini.original
+sed -i 's/short_open_tag = Off/short_open_tag = On/' /etc/opt/remi/php81/php.ini
+sed -i 's/expose_php = On/expose_php = Off/' /etc/opt/remi/php81/php.ini
+sed -i 's/display_errors = Off/display_errors = On/' /etc/opt/remi/php81/php.ini
+sed -i 's/;error_log = php_errors.log/error_log = php_errors.log/' /etc/opt/remi/php81/php.ini
+sed -i 's/error_reporting = E_ALL \& ~E_DEPRECATED/error_reporting = E_ALL \& ~E_NOTICE \& ~E_DEPRECATED \& ~E_USER_DEPRECATED/' /etc/opt/remi/php81/php.ini
+sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/' /etc/opt/remi/php81/php.ini
+sed -i 's/post_max_size = 8M/post_max_size = 100M/' /etc/opt/remi/php81/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 100M/' /etc/opt/remi/php81/php.ini
+sed -i 's/;date.timezone =/date.timezone = "Asia\/Seoul"/' /etc/opt/remi/php81/php.ini
+sed -i 's/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 86400/' /etc/opt/remi/php81/php.ini
+sed -i 's/disable_functions =/disable_functions = system,exec,passthru,proc_open,popen,curl_multi_exec,parse_ini_file,show_source/' /etc/opt/remi/php81/php.ini 
 
 
 echo "[xdebug]
@@ -492,6 +519,13 @@ xdebug.remote_enable = 1
 xdebug.remote_port = 9009
 xdebug.remote_handler = dbgp" >> /etc/opt/remi/php80/php.ini
 
+echo "[xdebug]
+xdebug.remote_autostart = 1
+xdebug.remote_connect_back = 1
+xdebug.remote_enable = 1
+xdebug.remote_port = 9009
+xdebug.remote_handler = dbgp" >> /etc/opt/remi/php81/php.ini
+
 mkdir /etc/skel/public_html
 
 chmod 707 /etc/skel/public_html
@@ -520,6 +554,7 @@ sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php72/php.i
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php73/php.ini
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php74/php.ini
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php80/php.ini
+sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php81/php.ini
 
 systemctl restart httpd
 
@@ -580,7 +615,7 @@ default-character-set = utf8mb4" > /etc/my.cnf.d/mysql-aai.cnf
 cd /root/AAI/
 
 #chkrootkit 설치
-wget ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit.tar.gz 
+#wget ftp://ftp.pangeia.com.br/pub/seg/pac/chkrootkit.tar.gz 
 
 tar xvfz chkrootkit.tar.gz
 
@@ -612,7 +647,7 @@ service arpwatch restart
 #clamav 설치
 yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
-cp /usr/share/doc/clamd-0.103.0/clamd.conf /etc/clamd.conf
+cp /usr/share/doc/clamd-0.103.4/clamd.conf /etc/clamd.conf
 
 sed -i '/^Example/d' /etc/clamd.conf
 sed -i 's/User <USER>/User clamscan/' /etc/clamd.conf
@@ -750,6 +785,7 @@ ln -s /etc/opt/remi/php72/php.ini /root/AAI/php/php72.ini
 ln -s /etc/opt/remi/php73/php.ini /root/AAI/php/php73.ini
 ln -s /etc/opt/remi/php74/php.ini /root/AAI/php/php74.ini
 ln -s /etc/opt/remi/php80/php.ini /root/AAI/php/php80.ini
+ln -s /etc/opt/remi/php81/php.ini /root/AAI/php/php81.ini
 
 service httpd restart
 
