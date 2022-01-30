@@ -2,7 +2,7 @@
  
 #####################################################################################
 #                                                                                   #
-# * CentOS APMinstaller v.1.5.6                                                     #
+# * CentOS APMinstaller v.1.5.7                                                     #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.5.X, Multi-PHP(base php7.2) setup shell script        #
 # * Created Date    : 2021/12/17                                                    #

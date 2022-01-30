@@ -4,7 +4,7 @@ AAI - APM AUTO INSTALL V.1.5.7
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
 사용자 생성,삭제,백업 스크립트 사용으로 시스템 계정, 디비 계정 자동 생성 지원
 Let's Encrypt - 무료 SSL 인증서 발급 및 갱신 지원
-Multi PHP 지원 (base php7.2) - 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1
+Multi PHP 지원 (base php7.2) - 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1
 모니터링 툴 - cockpit 지원
 </pre>
 
@@ -66,7 +66,7 @@ https://apachezone.com
 APM 및 설치 버전은 아래와 같습니다.
 
 httpd 2.4.6
-php (base php7.2) 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1
+php (base php7.2) 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1
 mariadb 10.5.13
 ionCube PHP Loader
 Zend OPcache
