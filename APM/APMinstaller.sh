@@ -641,7 +641,7 @@ sed -i 's/DOSSiteCount        50/DOSSiteCount        100/' /etc/httpd/conf.d/mod
 service fail2ban start
 chkconfig --level 2345 fail2ban on
 service arpwatch start
-sed -i 's,\(#filter = sshd-aggressive\),\1\nenabled = true,g;' /etc/fail2ban/jail.conf 
+sed -i 's/# enabled = true/enabled = true/' /etc/fail2ban/jail.conf 
 service arpwatch restart
 
 #clamav 설치
