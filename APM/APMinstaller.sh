@@ -2,10 +2,10 @@
  
 #####################################################################################
 #                                                                                   #
-# * CentOS APMinstaller v.1.5.7                                                     #
+# * CentOS APMinstaller v.1.5.8                                                     #
 # * CentOS 7.X   Minimal ISO                                                        #
 # * Apache 2.4.X , MariaDB 10.5.X, Multi-PHP(base php7.2) setup shell script        #
-# * Created Date    : 2021/12/17                                                    #
+# * Created Date    : 2021/02/07                                                    #
 # * Created by  : Joo Sung ( webmaster@apachezone.com )                             #
 #                                                                                   #
 #####################################################################################
@@ -640,8 +640,10 @@ sed -i 's/DOSSiteCount        50/DOSSiteCount        100/' /etc/httpd/conf.d/mod
 #fail2ban 설치
 service fail2ban start
 chkconfig --level 2345 fail2ban on
-service arpwatch start
 sed -i 's/# enabled = true/enabled = true/' /etc/fail2ban/jail.conf 
+service fail2ban restart
+
+service arpwatch start
 service arpwatch restart
 
 #clamav 설치

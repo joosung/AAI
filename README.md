@@ -1,4 +1,4 @@
-AAI - APM AUTO INSTALL V.1.5.7
+AAI - APM AUTO INSTALL V.1.5.8
 <pre>
 쉽고 빠른 설치, 운영, 업데이트까지 고려한 설계
 쉬운 업데이트 지원. (공식+인기 저장소를 사용하여 yum update 만으로 업데이트 완료)
@@ -65,7 +65,7 @@ https://apachezone.com
 <pre>
 APM 및 설치 버전은 아래와 같습니다.
 
-httpd 2.4.6
+httpd 2.4.37
 php (base php7.2) 5.4, 5.5, 5.6, 7.0, 7.1, 7.2, 7.3, 7.4, 8.0, 8.1
 mariadb 10.5.13
 ionCube PHP Loader
@@ -90,6 +90,6 @@ cockpit - cockpit-storaged 추가
 사용자 계정 삭제 스크립트 등...... 그외 필요한 라이브러리도 같이 설치가 됩니다. 
 </pre>
 
-clamav 버전업에 따른 수정 버전 입니다.
+fail2ban 버전업에 따른 수정 버전 입니다.
 
 **해당 버전은 해당 APM 및 라이브러리 업데이트에 따라 달라 질 수 있습니다.
