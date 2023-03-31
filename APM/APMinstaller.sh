@@ -222,6 +222,15 @@ php81-php-json php81-php-ldap php81-php-xml php81-php-iconv php81-php-xmlrpc php
 php81-php-pecl-apcu php81-php-pecl-geoip php81-php-pecl-memcached php81-php-pecl-redis \
 php81-php-pecl-xdebug php81-php-pecl-mailparse php81-php-pgsql php81-php-process
 
+##php8에서는 아직 지원 안됨 - php82-php-pecl-mysql php82-php-ioncube-loader
+yum -y install php82 php82-php-cli php82-php-fpm \
+php74-php-common php82-php-pdo php82-php-mysqlnd php82-php-mbstring php82-php-mcrypt \
+php82-php-opcache php82-php-xml php82-php-pecl-imagick php82-php-gd php82-php-fileinfo \
+php82-php-pecl-ssh2 php82-php-soap php82-php-devel php82-php-imap \
+php82-php-json php82-php-ldap php82-php-xml php82-php-iconv php82-php-xmlrpc php82-php-snmp \
+php82-php-pecl-apcu php82-php-pecl-geoip php82-php-pecl-memcached php82-php-pecl-redis \
+php82-php-pecl-xdebug php82-php-pecl-mailparse php82-php-pgsql php82-php-process
+
 echo 'listen = 127.0.0.1:9054
 pm = ondemand' >> /opt/remi/php54/root/etc/php-fpm.d/www.conf
 
@@ -251,6 +260,9 @@ pm = ondemand' >> /etc/opt/remi/php80/php-fpm.d/www.conf
 
 echo 'listen = 127.0.0.1:9081
 pm = ondemand' >> /etc/opt/remi/php81/php-fpm.d/www.conf
+
+echo 'listen = 127.0.0.1:9082
+pm = ondemand' >> /etc/opt/remi/php82/php-fpm.d/www.conf
 
 #systemctl start php-fpm
 #systemctl enable php-fpm
@@ -284,6 +296,9 @@ systemctl enable php80-php-fpm
 
 systemctl start php81-php-fpm
 systemctl enable php81-php-fpm
+
+systemctl start php82-php-fpm
+systemctl enable php82-php-fpm
 
 sed -i 's/php_value/#php_value/' /etc/httpd/conf.d/php.conf
 
@@ -448,6 +463,20 @@ sed -i 's/;date.timezone =/date.timezone = "Asia\/Seoul"/' /etc/opt/remi/php81/p
 sed -i 's/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 86400/' /etc/opt/remi/php81/php.ini
 sed -i 's/disable_functions =/disable_functions = system,exec,passthru,proc_open,popen,curl_multi_exec,parse_ini_file,show_source/' /etc/opt/remi/php81/php.ini 
 
+cp -av /etc/opt/remi/php82/php.ini /etc/opt/remi/php82/php.ini.original
+sed -i 's/short_open_tag = Off/short_open_tag = On/' /etc/opt/remi/php82/php.ini
+sed -i 's/expose_php = On/expose_php = Off/' /etc/opt/remi/php82/php.ini
+sed -i 's/display_errors = Off/display_errors = On/' /etc/opt/remi/php82/php.ini
+sed -i 's/;error_log = php_errors.log/error_log = php_errors.log/' /etc/opt/remi/php82/php.ini
+sed -i 's/error_reporting = E_ALL \& ~E_DEPRECATED/error_reporting = E_ALL \& ~E_NOTICE \& ~E_DEPRECATED \& ~E_USER_DEPRECATED/' /etc/opt/remi/php82/php.ini
+sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/' /etc/opt/remi/php82/php.ini
+sed -i 's/post_max_size = 8M/post_max_size = 100M/' /etc/opt/remi/php82/php.ini
+sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 100M/' /etc/opt/remi/php82/php.ini
+sed -i 's/;date.timezone =/date.timezone = "Asia\/Seoul"/' /etc/opt/remi/php82/php.ini
+sed -i 's/session.gc_maxlifetime = 1440/session.gc_maxlifetime = 86400/' /etc/opt/remi/php82/php.ini
+sed -i 's/disable_functions =/disable_functions = system,exec,passthru,proc_open,popen,curl_multi_exec,parse_ini_file,show_source/' /etc/opt/remi/php82/php.ini 
+
+
 
 echo "[xdebug]
 xdebug.remote_autostart = 1
@@ -526,6 +555,13 @@ xdebug.remote_enable = 1
 xdebug.remote_port = 9009
 xdebug.remote_handler = dbgp" >> /etc/opt/remi/php81/php.ini
 
+echo "[xdebug]
+xdebug.remote_autostart = 1
+xdebug.remote_connect_back = 1
+xdebug.remote_enable = 1
+xdebug.remote_port = 9009
+xdebug.remote_handler = dbgp" >> /etc/opt/remi/php82/php.ini
+
 mkdir /etc/skel/public_html
 
 chmod 707 /etc/skel/public_html
@@ -555,6 +591,7 @@ sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php73/php.i
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php74/php.ini
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php80/php.ini
 sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php81/php.ini
+sed -i 's/allow_url_fopen = On/allow_url_fopen = Off/' /etc/opt/remi/php82/php.ini
 
 systemctl restart httpd
 
@@ -649,7 +686,7 @@ service arpwatch restart
 #clamav 설치
 yum -y install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
 
-cp /usr/share/doc/clamd-0.103.4/clamd.conf /etc/clamd.conf
+cp /usr/share/doc/clamd-0.103.8/clamd.conf /etc/clamd.conf
 
 sed -i '/^Example/d' /etc/clamd.conf
 sed -i 's/User <USER>/User clamscan/' /etc/clamd.conf
@@ -788,6 +825,7 @@ ln -s /etc/opt/remi/php73/php.ini /root/AAI/php/php73.ini
 ln -s /etc/opt/remi/php74/php.ini /root/AAI/php/php74.ini
 ln -s /etc/opt/remi/php80/php.ini /root/AAI/php/php80.ini
 ln -s /etc/opt/remi/php81/php.ini /root/AAI/php/php81.ini
+ln -s /etc/opt/remi/php82/php.ini /root/AAI/php/php82.ini
 
 service httpd restart
 
